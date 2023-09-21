@@ -1,0 +1,122 @@
+.advance_table_cntr {
+  display: block;
+  position: relative;
+  background-size: 100% 100% !important;
+  border-radius: 20px;
+  background: #fff;
+  height: calc(250% - 90px);
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .table_hdr {
+    padding: 30px 40px;
+    font: normal bold 20px "Tisa Sans Pro Bold";
+    text-align: left;
+    letter-spacing: 0px;
+    color: #000000;
+  }
+
+  .table_cnt {
+    // display: table;
+    height: calc(250% - 84px);
+    width: 100%;
+    margin: 0 auto;
+
+    padding: 10px 90px 12px;
+    font-family: "Tisa Sans Pro Regular";
+    .rdt_TableHeadRow {
+      background: #f5f5f5;
+      border: none;
+    }
+
+    .adv_dtable {
+      height: calc(100% - 78px);
+      overflow: scroll;
+      font-family: "Tisa Sans Pro Regular";
+      .sc-hKMtZM {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      .iXRfeU {
+        overflow-y: initial;
+        overflow-x: initial;
+      }
+
+      .TpgDh {
+        font-family: "Tisa Sans Pro Medium";
+        color: #898989;
+        font-size: 14px;
+        line-height: 16px;
+      }
+      .action_score {
+        padding-left: 24px;
+      }
+
+      .bLckZJ,
+      .bnAwAJ {
+        justify-content: center;
+      }
+    }
+
+    .table_fltrs {
+      font-size: 12px;
+      padding-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      .css-b62m3t-container {
+        min-width: 160px;
+        z-index: 2;
+      }
+
+      .filter-text {
+        letter-spacing: var(--unnamed-character-spacing-0);
+        text-align: left;
+        letter-spacing: 0px;
+        color: #000000;
+        font-weight: bold;
+      }
+
+      select {
+        font-size: 12px;
+      }
+    }
+
+    .rdt_TableCell {
+      .score {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        background: #000;
+        text-align: center;
+        color: #000;
+        border-radius: 20px;
+        vertical-align: middle;
+        align-items: center;
+        justify-content: center;
+
+        &.A {
+          background: #9bdb5a;
+        }
+
+        &.B {
+          background: #f1e473;
+        }
+
+        &.C {
+          background: #ea9400;
+        }
+      }
+
+      .acc_tran {
+        text-decoration: underline;
+        font-size: 12px;
+        color: #000;
+      }
+    }
+  }
+}

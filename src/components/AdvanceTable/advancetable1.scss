@@ -1,0 +1,147 @@
+.adv_dtable {
+    .responsiveTable {
+        font-family: 'Tisa Sans Pro Regular';
+        color: #3F3F3F;
+
+        thead {
+            background: #F5F5F5;
+            font-family: 'Tisa Sans Pro Regular';
+            font-size: 14px;
+            color: #898989;
+            position: sticky;
+            top: 0;
+
+            tr {
+                th {
+                    padding: 14px;
+
+                    &.ascending::after {
+                        content: url(../../images/sort-down-solid.svg);
+                        // background: url(../../images/sort-down-solid.svg) center center no-repeat;
+                        display: inline-block;
+                        margin-left: 1em;
+                        width: 10px;
+                        height: 16px;
+                        position: absolute;
+                        
+                    }
+
+
+                    &.descending::after {
+                        content: url(../../images/sort-up-solid.svg);
+                        // background: url(../../images/sort-up-solid.svg) center center no-repeat;
+                        display: inline-block;
+                        margin-left: 1em;
+                        width: 10px;
+                        height: 16px;
+                        position: absolute;
+                        top: 20px;
+                    }
+                    &.role{
+                        text-align: center;
+                    }
+
+
+                }
+            }
+        }
+
+        tbody {
+            font-size: 14px;
+
+            tr {
+                border-bottom: 1px solid #E6E6E6;
+
+                td {
+                    padding: 14px;
+                    &.no{
+                        color: #878787;
+                    }
+
+                    &.role{
+                        text-align: center;
+                    }
+                    &.name {
+                        font-family: 'Tisa Sans Pro Medium';
+                        color: #3F3F3F;
+                    }
+
+                    .acc_tran {
+                        text-decoration: underline;
+                        color: #3F3F3F;
+
+                    }
+                    .access_tran{
+                        cursor: pointer;
+                    }
+
+                    .score {
+                        display: flex;
+                        width: 30px;
+                        height: 30px;
+                        background: #000;
+                        text-align: center;
+                        color: #000;
+                        border-radius: 20px;
+                        vertical-align: middle;
+                        align-items: center;
+                        justify-content: center;
+
+
+                        div {
+                            padding-top: 5px;
+                        }
+
+                        &.A {
+                            background: #9bdb5a;
+                        }
+
+                        &.B {
+                            background: #f1e473;
+                        }
+
+                        &.C {
+                            background: #ea9400;
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .advance_table_cntr {
+        .table_cnt {
+            padding: 10px 40px 12px;
+        }
+
+        .adv_dtable {
+            .responsiveTable {
+                thead {}
+
+                tbody {
+                    tr {
+                        border-color: #E6E6E6;
+
+                        td {
+                            padding: 8px;
+
+                            &.name {
+                                font-family: 'Tisa Sans Pro Regular';
+                                color: #3F3F3F;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btn-gif{
+    width: 20px;
+    height: 20px;
+}

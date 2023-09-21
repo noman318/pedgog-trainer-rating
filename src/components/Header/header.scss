@@ -1,0 +1,65 @@
+@import "../../theme.scss";
+
+.header {
+  background-color: $white;
+  color: $dark;
+  padding: 0.75%;
+  position: fixed;
+  z-index: 1200;
+  box-shadow: $box-shadow;
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 480px) {
+    // font-size: 10px;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand,
+  .nav-link {
+    color: $white;
+    text-decoration: none;
+
+    &:active,
+    &:hover,
+    &:visited,
+    &.focus {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  .d-block {
+    float: left;
+  }
+
+  .header-logo {
+    height: 40px;
+    float: left;
+  }
+
+  h3 {
+    float: left;
+    font-size: 16px;
+    // text-transform: uppercase;
+  }
+
+  .br-1 {
+    padding-right: 10px;
+    border-right: 1px solid #c6c6c6;
+  }
+
+  .user-name {
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}
+
+// section {
+// 	scroll-margin-top: 5rem;
+// }

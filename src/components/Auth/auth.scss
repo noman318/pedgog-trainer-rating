@@ -1,0 +1,35 @@
+@import "../../theme.scss";
+
+
+.logo {
+    float: left;
+}
+
+h2 {
+    float: left;
+}
+
+.bput {
+    height: 58px;
+    float: left;
+}
+
+.new-user {
+    color: $grey;
+}
+
+.forgot-password {
+    color: $light-grey;
+}
+
+.illumin-logo {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.copyright {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+}

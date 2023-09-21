@@ -1,0 +1,12 @@
+export const LOGIN_STATUS = 'loginStatus';
+export const USER_TYPE = 'userType';
+export const INCREMENT_API_CALL_COUNT = 'increment api call count';
+export const DECREMENT_API_CALL_COUNT = 'decrement api call count';
+export const NETWORK_ERROR = 'network error';
+export const NETWORK_ERROR_MESSAGE = 'An Error Occured';
+export const LOGGED_OUT = 'loggedOut';
+export const LOGGED_IN = 'loggedIn';
+export const SET_MENU = 'setMenu';
+export const REGISTERED = 'Registered';
+export const ALERT = 'alert';
+export const CLOSE_ALERT = 'Close Alert';

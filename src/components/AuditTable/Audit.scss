@@ -1,0 +1,311 @@
+.aduit_table_cntr {
+  font-family: "Rubik", sans-serif;
+}
+
+.table-body {
+  margin: 10px 10px 0px 38px;
+  font-family: "Rubik";
+
+  .back {
+    border: 2px solid #ffbc36;
+    border-radius: 15px;
+
+    position: relative;
+    margin-bottom: 37.82px;
+    padding: 8px 23px;
+
+    .back-btn-text {
+      padding-left: 10.39px;
+      letter-spacing: 0.42px;
+      color: #252525;
+      text-transform: uppercase;
+      @media screen and (max-width: 768px) {
+        font-size: 12px;
+      }
+
+      @media screen and (max-width: 480px) {
+        font-size: 10px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      padding: 6px 15px;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 480px) {
+      padding: 4px 10px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .table-title {
+    /* UI Properties */
+    // font: var(--unnamed-font-style-normal) normal bold 20px/24px Tisa Sans Pro;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    text-align: left;
+    // font: normal normal bold 16px 'Rubix';
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #000000;
+    margin-bottom: 30.82px;
+    font-family: "Tisa Sans Pro Bold";
+  }
+
+  .audit_table_cntr {
+    display: block;
+    position: relative;
+    background-size: 100% 100% !important;
+    border-radius: 20px;
+
+    .audit_rows {
+      width: 100%;
+      background-color: white;
+
+      .audit_row_cntr {
+        .question {
+          width: 45%;
+        }
+
+        .scoreField {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .score_field_input {
+          padding: 16px 13px;
+          width: inherit;
+          width: 20px;
+          height: 20px;
+          align-items: center;
+          width: 38px;
+          height: 26px;
+          border: 1px solid #cbcbcb;
+          border-radius: 8px;
+        }
+
+        @media screen and (max-width: 767px) {
+          .scoreField {
+            justify-content: left;
+          }
+          .display-tablecell {
+            display: block !important;
+          }
+
+          .question {
+            width: 100% !important;
+          }
+
+          .scoreField {
+            padding-top: 20px;
+            // margin: auto;
+            // width: 50%;
+            justify-content: left;
+          }
+        }
+      }
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .audit_hdr_sec {
+      padding: 22px;
+      background: #ededed;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      font-size: 14px;
+
+      .hdr_cnt {
+        // padding-left: 28px;
+
+        .divider {
+          padding-right: 20px;
+          padding-left: 2px;
+        }
+
+        &.id {
+          color: #b8b8b8;
+        }
+
+        &.name {
+          font-weight: 500;
+        }
+
+        &.border_left {
+          border-left: 1px solid #000;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .row {
+          padding: 0 20px !important;
+
+          .hdr_cnt {
+            padding: 4px 0px;
+            margin-top: 4px;
+            justify-content: left;
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+
+    .audit_row_cntr {
+      display: table;
+      height: calc(100% - 164px);
+      width: 80%;
+      margin: 0 auto;
+      max-width: 1000px;
+      padding: 12px 0px;
+      overflow: auto;
+      background: white;
+      font-size: 14px;
+
+      @media screen and (max-width: 767px) {
+        // text-align: center;
+        .row_cntnt {
+          padding: 12px 0px;
+        }
+
+        .audit-row {
+          padding: 0 !important;
+
+          .question {
+            padding-left: 0 !important;
+            padding-bottom: 0;
+          }
+
+          .range_cell {
+            padding: 28px 0;
+
+            margin-left: -18px;
+          }
+
+          .scoreField {
+            padding-left: 0 !important;
+          }
+        }
+      }
+
+      .audit-row:not(:last-child) {
+        border-bottom: 1px solid #d3d3d3;
+      }
+
+      input[type="text"] {
+        padding: 0.3rem 0.75rem;
+        width: 36px;
+        border-radius: 6px;
+      }
+
+      .range_cntr {
+        width: 250px;
+        height: 10px;
+        background: #000;
+      }
+
+      .range_cell {
+        width: 280px;
+      }
+
+      .scoreField {
+        margin: auto;
+      }
+    }
+
+    .audit_footr_cntr {
+      padding: 24px;
+      background: #ededed;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+
+      .footr_cntr {
+        display: table;
+        width: 69%;
+        height: 100%;
+        margin: 0 auto;
+        max-width: 1000px;
+        font-weight: 600;
+        .total_cntr {
+          padding-right: 14px;
+
+          .tota_scr {
+            padding-right: 28px;
+          }
+
+          .scr {
+            min-width: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .score {
+      margin-top: 10px;
+    }
+  }
+
+  .score {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background: #000;
+    text-align: center;
+    color: #000;
+    border-radius: 20px;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      padding-bottom: 4px;
+    }
+
+    &.A {
+      background: #9bdb5a;
+    }
+
+    &.B {
+      background: #f1e473;
+    }
+
+    &.C {
+      background: #ea9400;
+    }
+  }
+
+  .save_cntr {
+    margin: 20px 0px;
+
+    .save_btn {
+      background: #ffbc36;
+      vertical-align: middle;
+      align-items: center;
+      border-color: #ffbc36;
+      padding: 10px 89px;
+      color: #000;
+
+      text-transform: uppercase;
+      font-weight: 500;
+      min-width: 325px;
+      min-height: 64px;
+      letter-spacing: 0.54px;
+      border-radius: 14px;
+    }
+  }
+}
