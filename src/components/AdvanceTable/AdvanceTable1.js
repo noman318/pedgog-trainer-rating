@@ -18,7 +18,7 @@ import { fetchUsers, setPersonalTrainer } from "../../services/auth";
 import TableRow from "./TableRow";
 
 const AdvanceTable1 = ({ data, callback }) => {
-  // console.log("data", data);
+  console.log("data", data);
   const [loading, setLoading] = useState([""]);
   const [tableData, setData] = useState(data);
   // console.log("tableData", tableData);
@@ -110,6 +110,7 @@ const AdvanceTable1 = ({ data, callback }) => {
           </Th>
           <Th className="role">Score</Th>
           <Th className="role">Role</Th>
+          <Th>Comment</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -118,8 +119,8 @@ const AdvanceTable1 = ({ data, callback }) => {
             <Tr key={index}>
               <Td className="no">{d.index}</Td>
               <Td className="name">{d.fullname}</Td>
-              <Td>{d.zone}</Td>
-              <Td>{d.division}</Td>
+              {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>}
+              {d.division ? <Td>{d.division}</Td> : <Td>-</Td>}
               <Td>{d.programName} </Td>
               <Td className="role">
                 {d.score ? (
@@ -167,6 +168,11 @@ const AdvanceTable1 = ({ data, callback }) => {
                   {}
                 </a>
               </Td>
+              {d?.comment ? (
+                <Td className="comment">{d?.comment} </Td>
+              ) : (
+                <Td>-</Td>
+              )}
             </Tr>
           );
         })}

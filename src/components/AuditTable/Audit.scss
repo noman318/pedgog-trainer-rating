@@ -3,8 +3,11 @@
 }
 
 .table-body {
-  margin: 10px 10px 0px 38px;
+  margin: 10px 2px;
   font-family: "Rubik";
+  @media screen and (max-width: 480px) {
+    width: 85%;
+  }
 
   .back {
     border: 2px solid #ffbc36;
@@ -84,6 +87,32 @@
           border: 1px solid #cbcbcb;
           border-radius: 8px;
         }
+        .comment_section {
+          margin: 20px 0 20px 12px;
+          // margin-left: 12px;
+          @media screen and (max-width: 480px) {
+            margin: 20px 0;
+          }
+          .comment_label {
+            color: black;
+            margin-bottom: 10px;
+            font-size: 14px;
+          }
+          .comment_form_control {
+            width: 100%;
+
+            .comment_textbox {
+              min-height: 3rem;
+              border-radius: 10px;
+              border: none;
+              border: 1px solid lightgrey;
+
+              @media screen and (max-width: 480px) {
+                min-height: 4rem;
+              }
+            }
+          }
+        }
 
         @media screen and (max-width: 767px) {
           .scoreField {
@@ -125,6 +154,9 @@
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       font-size: 14px;
+      @media screen and (max-width: 480px) {
+        padding: 11px;
+      }
 
       .hdr_cnt {
         // padding-left: 28px;
@@ -147,6 +179,10 @@
           justify-content: center;
           display: flex;
           align-items: center;
+
+          @media screen and (max-width: 480px) {
+            border: none;
+          }
         }
       }
 
@@ -174,6 +210,9 @@
       overflow: auto;
       background: white;
       font-size: 14px;
+      @media screen and (max-width: 480px) {
+        padding-left: 30px;
+      }
 
       @media screen and (max-width: 767px) {
         // text-align: center;
@@ -306,6 +345,13 @@
       min-height: 64px;
       letter-spacing: 0.54px;
       border-radius: 14px;
+
+      @media screen and (max-width: 767px) {
+        padding: 10px 45px;
+        min-width: 310px;
+        min-height: 30px;
+        font-weight: 400;
+      }
     }
   }
 }

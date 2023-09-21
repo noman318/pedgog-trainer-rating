@@ -14,7 +14,7 @@ import { notifyError, notifySuccessSave } from "../../utils/common";
 import { ToastContainer, toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import questions from "../AuditTable/Questions.json";
-// import Textarea from "@mui/joy/Textarea";
+
 import {
   FormControl,
   FormControlLabel,
@@ -37,17 +37,17 @@ const AuditTable = () => {
   // console.log("question", questions);
 
   const formik = useFormik({
-    initialValues: { rate: questions },
+    initialValues: { rate: questions, comment: "" },
     onSubmit: (values) => {
       console.log("submitted", values);
     },
   });
-  // console.log("formik", formik.values.rate);
 
   const search = useLocation().search;
   const [userId, setUserId] = useState(
     new URLSearchParams(search).get("userId")
   );
+  const [comment, setComment] = useState("");
 
   const [id, setId] = useState(new URLSearchParams(search).get("id"));
   const [user, setUser] = useState(null);
@@ -55,7 +55,10 @@ const AuditTable = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const submitAction = () => {
-    saveAudit(userId, formik.values.rate, isEdit).then(
+    // console.log("formik.values?.rate", formik.values?.rate);
+    console.log("commentsInSubmit", comment);
+    console.log("isEditInSubmit", isEdit);
+    saveAudit(userId, { score: formik.values.rate, comment }, isEdit).then(
       (result) => {
         if (!result.code) {
           setSuccess(true);
@@ -68,6 +71,7 @@ const AuditTable = () => {
         }
       },
       (error) => {
+        console.log("error", error);
         notifyError();
         setError(true);
       }
@@ -87,6 +91,7 @@ const AuditTable = () => {
           ) {
             formik.values.rate = result.audit.score;
             setIsEdit(true);
+            setComment(result?.audit?.comment);
           }
 
           setIsLoading(false);
@@ -113,8 +118,7 @@ const AuditTable = () => {
           </button>
           <div className="table-title">Participant Scorecard</div>
           <div className="audit_table_cntr">
-            <AuditTableHeader user={user} id={id}></AuditTableHeader>
-
+            <AuditTableHeader user={user} id={id} />
             <form>
               <div className="audit_rows">
                 <div className="audit_row_cntr">
@@ -127,21 +131,23 @@ const AuditTable = () => {
                         values={formik.values}
                         setFieldValue={formik.setFieldValue}
                         handleChange={formik.handleChange}
-                      ></AuditRow>
+                      />
                     );
                   })}
-                </div>
-                <div aria-label="comments-section">
-                  <FormControl>
-                    <FormLabel>Comments</FormLabel>
-                    <TextareaAutosize
-                      minRows={3}
-                      aria-describedby="my-helper-text"
-                    />
-                    <FormHelperText id="my-helper-text">
-                      Comments here
-                    </FormHelperText>
-                  </FormControl>
+                  <div className="comment_section" aria-label="comment-section">
+                    <FormControl className="comment_form_control">
+                      <FormLabel className="comment_label">Comment</FormLabel>
+                      <TextareaAutosize
+                        minRows={3}
+                        aria-describedby="text-area"
+                        name="comment"
+                        value={comment}
+                        className="comment_textbox"
+                        onChange={(e) => setComment(e.target.value)}
+                        style={{ padding: "0.5rem", marginLeft: "-8px" }}
+                      />
+                    </FormControl>
+                  </div>
                 </div>
               </div>
               <AuditTableFooter values={formik.values}></AuditTableFooter>
@@ -156,7 +162,7 @@ const AuditTable = () => {
                     onClick={submitAction}
                     disabled={success || error}
                   >
-                    Save Score
+                    {isEdit ? "Update Score" : "Save Score"}
                   </Button>
                 </div>
               </div>

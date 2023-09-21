@@ -8,6 +8,7 @@ import Alert from "./components/partials/Alert";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 import AxiosClient from "./utils/axios";
 import NetworkProvider from "./providers/network.provider";
+import styled from "styled-components";
 // import Header from "./components/Header/Header";
 
 const RouterComponent = lazy(() =>
@@ -80,19 +81,23 @@ const theme = createTheme({
     },
   },
 });
-
+const AppWrapper = styled.div`
+  overflow-x: hidden;
+`;
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <AppStateProvider>
-        <NetworkProvider>
-          <BrowserRouter>
-            <AxiosClient />
-            <Alert />
-            <RouterComponent />
-          </BrowserRouter>
-        </NetworkProvider>
-      </AppStateProvider>
+      <AppWrapper>
+        <AppStateProvider>
+          <NetworkProvider>
+            <BrowserRouter>
+              <AxiosClient />
+              <Alert />
+              <RouterComponent />
+            </BrowserRouter>
+          </NetworkProvider>
+        </AppStateProvider>
+      </AppWrapper>
     </ThemeProvider>
   );
 }

@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars, array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React from "react";
 import "./AdvanceTable.scss";
 import DataTable from "react-data-table-component";
@@ -56,6 +58,7 @@ const AdvanceTable = () => {
           data.index = `${i + 1}`.padStart(2, "0");
           data.userId = result[i].userId;
           data.isSuperTrainer = result[i].isSuperTrainer;
+          data.comment = result[i].comment;
           modifiedResults.push(data);
         }
         setFilteredItems(modifiedResults);
@@ -126,11 +129,11 @@ const AdvanceTable = () => {
 
       <div className="table_cnt">
         <div className="table_fltrs">
-          <div className="d-inline-block">
-            <div className="d-inline-block filter-text">Zone</div>
-            <div className="d-inline-block px-4">
+          <div className="filter_section">
+            <div className="filter-text">Zone</div>
+            <div className="px-2">
               <select
-                className="form-select d-inline-block"
+                className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
                   setZone(e.target.value);
@@ -150,11 +153,11 @@ const AdvanceTable = () => {
             </div>
           </div>
 
-          <div className="d-inline-block">
-            <div className="d-inline-block filter-text">Division</div>
-            <div className="d-inline-block px-4">
+          <div className="filter_section">
+            <div className="filter-text">Division</div>
+            <div className="px-2">
               <select
-                className="form-select d-inline-block"
+                className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
                   setDivision(e.target.value);

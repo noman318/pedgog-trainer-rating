@@ -15,6 +15,18 @@
     text-align: left;
     letter-spacing: 0px;
     color: #000000;
+    @media screen and (max-width: 768px) {
+      font-size: large;
+      padding: 15px 20px;
+    }
+  }
+  .filter_section {
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: 320px) {
+      width: 100%;
+      justify-content: space-around;
+    }
   }
 
   .table_cnt {
