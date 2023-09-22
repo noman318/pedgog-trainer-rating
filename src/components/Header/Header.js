@@ -66,7 +66,12 @@ const Header = () => {
             
           </span> */}
             <div className="log_out_icon float-end">
-              <Power width={20} height={20} onClick={logout}></Power>
+              <Power
+                className="icon_logout"
+                width={20}
+                height={20}
+                onClick={logout}
+              ></Power>
             </div>
           </div>
         </div>

@@ -13,7 +13,17 @@
   }
 
   @media screen and (max-width: 480px) {
-    // font-size: 10px;
+    .log_out_icon {
+      // background-color: red;
+      position: relative;
+    }
+    .icon_logout {
+      position: absolute;
+      bottom: 1px;
+      width: 30px;
+      height: 22px;
+      right: 5px;
+    }
   }
   .left {
     display: flex;
