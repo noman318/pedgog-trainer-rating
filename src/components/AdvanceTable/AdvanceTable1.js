@@ -16,6 +16,7 @@ import loader from "../../images/loader.gif";
 import { getItem, setItem } from "../../utils/storage";
 import { fetchUsers, setPersonalTrainer } from "../../services/auth";
 import TableRow from "./TableRow";
+import { Link } from "react-router-dom";
 
 const AdvanceTable1 = ({ data, callback }) => {
   console.log("data", data);
@@ -131,20 +132,21 @@ const AdvanceTable1 = ({ data, callback }) => {
                       <div className={d.score}>{d.score}</div>
                     </div>
                     <div className="action_score d-inline-block">
-                      <a href={`/home?userId=${d.userId}&id=${index + 1}`}>
+                      <Link href={`/home?userId=${d.userId}&id=${index + 1}`}>
                         <Edit3 color="#d06752" width={16} height={16}></Edit3>
-                      </a>
+                      </Link>
                     </div>
                   </>
                 ) : (
-                  <a
+                  <Link
                     className="acc_tran role"
-                    href={`/home?userId=${d.userId}&id=${`${
-                      index + 1
-                    }`.padStart(2, "0")}`}
+                    to={`/home?userId=${d.userId}&id=${`${index + 1}`.padStart(
+                      2,
+                      "0"
+                    )}`}
                   >
                     Assess Trainer
-                  </a>
+                  </Link>
                 )}
               </Td>
               <Td

@@ -5,6 +5,7 @@
 import { Edit3, PlusCircle } from "react-feather";
 import classnames from "classnames";
 import Role_Icon from "../images/role.svg";
+import { Link } from "react-router-dom";
 
 export const ReportDataTableColumn = [
   {
@@ -54,15 +55,15 @@ export const ReportDataTableColumn = [
               <div className={row.score}>{row.score}</div>
             </div>
             <div className="action_score">
-              <a href={`/home?userId=${row.userId}&id=${index + 1}`}>
+              <Link href={`/home?userId=${row.userId}&id=${index + 1}`}>
                 <Edit3 color="#d06752" width={16} height={16}></Edit3>
-              </a>
+              </Link>
             </div>
           </>
         );
       } else {
         return (
-          <a
+          <Link
             className="acc_tran"
             href={`/home?userId=${row.userId}&id=${`${index + 1}`.padStart(
               2,
@@ -70,7 +71,7 @@ export const ReportDataTableColumn = [
             )}`}
           >
             Assess Trainer
-          </a>
+          </Link>
         );
       }
     },
