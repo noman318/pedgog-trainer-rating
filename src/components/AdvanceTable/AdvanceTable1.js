@@ -132,7 +132,7 @@ const AdvanceTable1 = ({ data, callback }) => {
                       <div className={d.score}>{d.score}</div>
                     </div>
                     <div className="action_score d-inline-block">
-                      <Link href={`/home?userId=${d.userId}&id=${index + 1}`}>
+                      <Link to={`/home?userId=${d.userId}&id=${index + 1}`}>
                         <Edit3 color="#d06752" width={16} height={16}></Edit3>
                       </Link>
                     </div>
@@ -154,11 +154,11 @@ const AdvanceTable1 = ({ data, callback }) => {
                 onClick={() => onRoleClick(d.userId, d.isSuperTrainer)}
                 style={{ cursor: "Pointer !important" }}
               >
-                <a
+                <Link
                   className="access_tran"
                   title="click to switch"
                   style={{ cursor: "Pointer !important" }}
-                  href="/"
+                  to="/"
                 >
                   {loading?.find((c) => c === d.userId) ? (
                     <img className="btn-gif" src={loader}></img>
@@ -168,7 +168,7 @@ const AdvanceTable1 = ({ data, callback }) => {
                     <img src={Role_Icon}></img>
                   )}
                   {}
-                </a>
+                </Link>
               </Td>
               {d?.comment ? (
                 <Td className="comment">{d?.comment} </Td>

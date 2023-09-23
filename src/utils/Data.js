@@ -55,7 +55,7 @@ export const ReportDataTableColumn = [
               <div className={row.score}>{row.score}</div>
             </div>
             <div className="action_score">
-              <Link href={`/home?userId=${row.userId}&id=${index + 1}`}>
+              <Link to={`/home?userId=${row.userId}&id=${index + 1}`}>
                 <Edit3 color="#d06752" width={16} height={16}></Edit3>
               </Link>
             </div>
@@ -65,7 +65,7 @@ export const ReportDataTableColumn = [
         return (
           <Link
             className="acc_tran"
-            href={`/home?userId=${row.userId}&id=${`${index + 1}`.padStart(
+            to={`/home?userId=${row.userId}&id=${`${index + 1}`.padStart(
               2,
               "0"
             )}`}

@@ -109,10 +109,7 @@ const AuditTable = () => {
     <>
       <FormikProvider value={formik}>
         <div className="table-body aduit_table_cntr">
-          <button
-            className="back"
-            onClick={() => (window.location.href = "\\report")}
-          >
+          <button className="back" onClick={() => history.push("/report")}>
             <img src={backButtonImg} className="back-btn-img" alt="back"></img>
             <span className="back-btn-text">BACK</span>
           </button>

@@ -140,10 +140,7 @@ const AdvanceTable = () => {
                   _onZoneChange(e);
                 }}
               >
-                <option selected value="All">
-                  All
-                </option>
-                $
+                <option defaultValue={"All"}>All</option>$
                 {getZones().map((data, index) => (
                   <option value={data} key={index}>
                     {data}
@@ -164,10 +161,7 @@ const AdvanceTable = () => {
                   _onDivisionChange(e);
                 }}
               >
-                <option selected value="All">
-                  All
-                </option>
-                $
+                <option defaultValue={"All"}>All</option>$
                 {getDivisions().map((data, index) => (
                   <option value={data} key={index}>
                     {data}
