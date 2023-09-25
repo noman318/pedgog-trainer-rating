@@ -17,7 +17,7 @@ const AdvanceTable = () => {
   const [filteredItems, setFilteredItems] = useState(reportData);
   const [zone, setZone] = useState("All");
   const [page, setPage] = React.useState(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [pageCount, setPageCount] = useState(1);
   const getZones = () => {
     let uniqueZones = [];
@@ -171,7 +171,7 @@ const AdvanceTable = () => {
             </div>
           </div>
           <TablePagination
-            rowsPerPageOptions={[25, 50, 75, 100]}
+            rowsPerPageOptions={[10, 25, 50, 75, 100]}
             component="div"
             count={pageCount}
             rowsPerPage={rowsPerPage}
