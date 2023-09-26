@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars, array-callback-return */
 import Config from "../config";
 
-// export const BASE_URL = "http://localhost:4000/v1";
-export const BASE_URL = "https://api.pedgog.in/v1";
+export const BASE_URL = "http://localhost:4000/v1";
+// export const BASE_URL = "https://api.pedgog.in/v1";
 // export let BASE_URL = Config.API_URL;
 
 export const REGISTER_URL = `${BASE_URL}/auth/register`;

@@ -45,13 +45,16 @@ const AdvanceTable1 = ({ data, callback }) => {
           data.zone = result[i].zone;
           data.division = result[i].division;
           data.programName = result[i].programName;
+          data.user_score = result[i].user_score;
+          data.isAbsent = result[i].isAbsent;
+          data.isIncomplete = result[i].isIncomplete;
           data.score = result[i].score;
           data.index = `${i + 1}`.padStart(2, "0");
           data.userId = result[i].userId;
           data.isSuperTrainer = result[i].isSuperTrainer;
           modifiedResults.push(data);
         }
-        // setData(modifiedResults);
+        setData(modifiedResults);
         setData(modifiedResults);
         let values = loading.filter((x) => x !== userId);
         setLoading(values);
@@ -107,9 +110,10 @@ const AdvanceTable1 = ({ data, callback }) => {
             onClick={() => requestSort("programName")}
             className={getClassNamesFor("programName")}
           >
-            Program Convered
+            Program Covered
           </Th>
-          <Th className="role">Score</Th>
+          <Th>Score</Th>
+          <Th className="role">Grade</Th>
           <Th className="role">Role</Th>
           <Th>Comment</Th>
         </Tr>
@@ -118,13 +122,23 @@ const AdvanceTable1 = ({ data, callback }) => {
         {data?.map((d, index) => {
           return (
             <Tr key={index}>
-              <Td className="no">{d.index}</Td>
+              <Td className="no">{index + 1}</Td>
               <Td className="name">{d.fullname}</Td>
               {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>}
               {d.division ? <Td>{d.division}</Td> : <Td>-</Td>}
-              <Td>{d.programName} </Td>
+              <Td>{d.programName}</Td>
+              {d.isAbsent ? (
+                <Td>
+                  <p>Absent</p>
+                </Td>
+              ) : (
+                <Td>{d.user_score}</Td>
+              )}
+              {/* <Td>{d.user_score}</Td> */}
               <Td className="role">
-                {d.score ? (
+                {d.isAbsent ? (
+                  <p>Absent</p>
+                ) : d.score ? (
                   <>
                     <div
                       className={classnames("score", d.score, "d-inline-block")}
@@ -138,15 +152,18 @@ const AdvanceTable1 = ({ data, callback }) => {
                     </div>
                   </>
                 ) : (
-                  <Link
-                    className="acc_tran role"
-                    to={`/home?userId=${d.userId}&id=${`${index + 1}`.padStart(
-                      2,
-                      "0"
-                    )}`}
-                  >
-                    Assess Trainer
-                  </Link>
+                  <>
+                    <Link
+                      className="acc_tran role"
+                      to={`/home?userId=${d.userId}&id=${`${
+                        index + 1
+                      }`.padStart(2, "0")}`}
+                    >
+                      Assess Trainer
+                      <br />
+                    </Link>
+                    <p>{d.isIncomplete ? "Incomplete" : ""}</p>
+                  </>
                 )}
               </Td>
               <Td

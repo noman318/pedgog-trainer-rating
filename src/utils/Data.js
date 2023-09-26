@@ -39,7 +39,7 @@ export const ReportDataTableColumn = [
     style: { color: "#3F3F3F" },
   },
   {
-    name: "Program Convered",
+    name: "Program Covered",
     selector: (row) => row.programName,
     sortable: true,
     width: "20%",

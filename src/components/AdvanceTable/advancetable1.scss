@@ -56,6 +56,7 @@
 
           &.role {
             text-align: center;
+            white-space: nowrap;
           }
           &.name {
             font-family: "Tisa Sans Pro Medium";
@@ -96,6 +97,9 @@
 
             &.C {
               background: #ea9400;
+            }
+            &.D {
+              background: rgb(209, 59, 59);
             }
           }
         }

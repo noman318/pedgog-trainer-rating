@@ -22,12 +22,24 @@ const AdvanceTable = () => {
   const getZones = () => {
     let uniqueZones = [];
     reportData?.map((data) => {
-      if (uniqueZones.indexOf(data.zone) === -1) {
+      if (data.zone && uniqueZones.indexOf(data.zone) === -1) {
         uniqueZones.push(data.zone);
       }
     });
     return uniqueZones;
   };
+
+  const getGrades = () => {
+    let allGrades = [];
+    reportData?.map((data) => {
+      if (data.score && allGrades.indexOf(data.score) === -1) {
+        allGrades.push(data.score);
+      }
+    });
+    console.log("allGrades", allGrades);
+    return allGrades;
+  };
+  // getGrades();
   const handleChangePage = (event, newPage) => {
     // console.log("newPage", newPage);
     setPage(newPage);
@@ -54,6 +66,9 @@ const AdvanceTable = () => {
           data.zone = result[i].zone;
           data.division = result[i].division;
           data.programName = result[i].programName;
+          data.user_score = result[i].user_score;
+          data.isAbsent = result[i].isAbsent;
+          data.isIncomplete = result[i].isIncomplete;
           data.score = result[i].score;
           data.index = `${i + 1}`.padStart(2, "0");
           data.userId = result[i].userId;
@@ -75,15 +90,18 @@ const AdvanceTable = () => {
   const getDivisions = () => {
     let uniqueDivisions = [];
     reportData.map((data) => {
-      if (uniqueDivisions.indexOf(data.division) === -1) {
+      if (data.division && uniqueDivisions.indexOf(data.division) === -1) {
         uniqueDivisions.push(data.division);
       }
     });
+    // console.log("uniqueDivisions", uniqueDivisions);
     return uniqueDivisions;
   };
   // console.log("pageCount", pageCount);
 
   const [division, setDivision] = useState("All");
+
+  const [score, setScore] = useState("All");
 
   const _onZoneChange = (e) => {
     if (e.target.value === "All" && division === "All") {
@@ -117,6 +135,20 @@ const AdvanceTable = () => {
     setFilteredItems(
       reportData.filter((x) => x.division === e.target.value && x.zone === zone)
     );
+  };
+
+  console.log("reportData", reportData);
+
+  const _onGradeChange = (e) => {
+    const selectedGrade = e.target.value;
+    if (selectedGrade === "All") {
+      setFilteredItems(reportData);
+      return;
+    }
+    const filteredData = reportData.filter(
+      (item) => item.score === selectedGrade
+    );
+    setFilteredItems(filteredData);
   };
 
   return isloading ? (
@@ -163,6 +195,26 @@ const AdvanceTable = () => {
               >
                 <option defaultValue={"All"}>All</option>$
                 {getDivisions().map((data, index) => (
+                  <option value={data} key={index}>
+                    {data}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="filter_section">
+            <div className="filter-text">Grades</div>
+            <div className="px-2">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setScore(e.target.value);
+                  _onGradeChange(e);
+                }}
+              >
+                <option defaultValue={"All"}>All</option>$
+                {getGrades().map((data, index) => (
                   <option value={data} key={index}>
                     {data}
                   </option>
