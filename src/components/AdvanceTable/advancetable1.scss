@@ -116,9 +116,6 @@
 
     .adv_dtable {
       .responsiveTable {
-        thead {
-        }
-
         tbody {
           tr {
             border-color: #e6e6e6;
@@ -141,4 +138,9 @@
 .btn-gif {
   width: 20px;
   height: 20px;
+}
+.download_csv_btn {
+  margin: 0 1rem 2rem 0;
+  display: flex;
+  justify-content: flex-end;
 }

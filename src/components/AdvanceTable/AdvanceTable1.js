@@ -38,11 +38,13 @@ const AdvanceTable1 = ({ data, callback }) => {
     fetchUsers().then(
       (response) => {
         let result = response.data;
+        // console.log("result", result);
         let modifiedResults = [];
         for (let i = 0; i < result.length; i++) {
           let data = {};
           data.fullname = result[i].fullname;
           data.zone = result[i].zone;
+          data.batches = result[i].batches;
           data.division = result[i].division;
           data.programName = result[i].programName;
           data.user_score = result[i].user_score;
@@ -67,7 +69,7 @@ const AdvanceTable1 = ({ data, callback }) => {
       }
     );
   };
-
+  console.log("(data[0])", data[0]);
   useEffect(() => {
     let values = getItem("trainersWithRole");
     if (values) {
@@ -82,121 +84,236 @@ const AdvanceTable1 = ({ data, callback }) => {
       get(userId);
     });
   };
+  function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getComparator(order, orderBy) {
+    return order === "desc"
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  }
+
+  function stableSort(array, comparator) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) {
+        return order;
+      }
+      return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+  }
+
+  // const headCells = [
+  //   {
+  //     id: "name",
+  //     numeric: false,
+  //     disablePadding: true,
+  //     label: "Dessert (100g serving)",
+  //   },
+  //   {
+  //     id: "calories",
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: "Calories",
+  //   },
+  //   {
+  //     id: "fat",
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: "Fat (g)",
+  //   },
+  //   {
+  //     id: "carbs",
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: "Carbs (g)",
+  //   },
+  //   {
+  //     id: "protein",
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: "Protein (g)",
+  //   },
+  // ];
+  function jsonToCsv(jsonData, fileName) {
+    if (!Array.isArray(jsonData)) {
+      jsonData = [jsonData];
+    }
+
+    const headers = Object.keys(jsonData[0]);
+    const csvRows = [];
+    csvRows.push(headers.join(","));
+
+    for (const row of jsonData) {
+      const values = headers.map((header) => {
+        let value = row[header];
+        if (typeof value === "string" && value.includes(",")) {
+          value = `"${value}"`;
+        }
+        return value;
+      });
+      csvRows.push(values.join(","));
+    }
+
+    const csvString = csvRows.join("\n");
+    const csvBlob = new Blob([csvString], { type: "text/csv" });
+    const csvUrl = window.URL.createObjectURL(csvBlob);
+
+    const link = document.createElement("a");
+    link.href = csvUrl;
+    link.setAttribute("download", fileName || "data.csv");
+    document.body.appendChild(link);
+
+    link.click();
+
+    window.URL.revokeObjectURL(csvUrl);
+    document.body.removeChild(link);
+  }
+
+  // Trigger the conversion and download
+  const handleExport = () => {
+    jsonToCsv(data, `Master trainer`);
+  };
 
   return (
-    <Table>
-      <Thead>
-        <Tr>
-          <Th>S.No</Th>
-          <Th
-            onClick={() => requestSort("fullname")}
-            className={getClassNamesFor("fullname")}
-          >
-            Trainer Name
-          </Th>
-          <Th
-            onClick={() => requestSort("zone")}
-            className={getClassNamesFor("zone")}
-          >
-            Zone
-          </Th>
-          <Th
-            onClick={() => requestSort("division")}
-            className={getClassNamesFor("division")}
-          >
-            Divison
-          </Th>
-          <Th
-            onClick={() => requestSort("programName")}
-            className={getClassNamesFor("programName")}
-          >
-            Program Covered
-          </Th>
-          <Th>Score</Th>
-          <Th className="role">Grade</Th>
-          <Th className="role">Role</Th>
-          <Th>Comment</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {data?.map((d, index) => {
-          return (
-            <Tr key={index}>
-              <Td className="no">{index + 1}</Td>
-              <Td className="name">{d.fullname}</Td>
-              {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>}
-              {d.division ? <Td>{d.division}</Td> : <Td>-</Td>}
-              <Td>{d.programName}</Td>
-              {d.isAbsent ? (
-                <Td>
-                  <p>Absent</p>
-                </Td>
-              ) : (
-                <Td>{d.user_score}</Td>
-              )}
-              {/* <Td>{d.user_score}</Td> */}
-              <Td className="role">
+    <>
+      <div className="download_csv_btn">
+        <button onClick={handleExport}>Export to Excel</button>
+      </div>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>S.No</Th>
+            <Th
+            // onClick={() => requestSort("fullname")}
+            // className={getClassNamesFor("fullname")}
+            >
+              Trainer Name
+            </Th>
+            <Th
+            // onClick={() => requestSort("batches")}
+            // className={getClassNamesFor("batches")}
+            >
+              Batches
+            </Th>
+            <Th
+            // onClick={() => requestSort("zone")}
+            // className={getClassNamesFor("zone")}
+            >
+              Zone
+            </Th>
+            <Th
+            // onClick={() => requestSort("division")}
+            // className={getClassNamesFor("division")}
+            >
+              Divison
+            </Th>
+            <Th
+            // onClick={() => requestSort("programName")}
+            // className={getClassNamesFor("programName")}
+            >
+              Program Covered
+            </Th>
+            <Th>Score</Th>
+            <Th className="role">Grade</Th>
+            <Th className="role">Role</Th>
+            <Th>Comment</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data?.map((d, index) => {
+            return (
+              <Tr key={index}>
+                <Td className="no">{index + 1}</Td>
+                <Td className="name">{d.fullname}</Td>
+                {d.batches ? <Td className="name">{d.batches}</Td> : <Td>-</Td>}
+                {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>}
+                {d.division ? <Td>{d.division}</Td> : <Td>-</Td>}
+                <Td>{d.programName}</Td>
                 {d.isAbsent ? (
-                  <p>Absent</p>
-                ) : d.score ? (
-                  <>
-                    <div
-                      className={classnames("score", d.score, "d-inline-block")}
-                    >
-                      <div className={d.score}>{d.score}</div>
-                    </div>
-                    <div className="action_score d-inline-block">
-                      <Link to={`/home?userId=${d.userId}&id=${index + 1}`}>
-                        <Edit3 color="#d06752" width={16} height={16}></Edit3>
-                      </Link>
-                    </div>
-                  </>
+                  <Td>
+                    <p>Absent</p>
+                  </Td>
                 ) : (
-                  <>
-                    <Link
-                      className="acc_tran role"
-                      to={`/home?userId=${d.userId}&id=${`${
-                        index + 1
-                      }`.padStart(2, "0")}`}
-                    >
-                      Assess Trainer
-                      <br />
-                    </Link>
-                    <p>{d.isIncomplete ? "Incomplete" : ""}</p>
-                  </>
+                  <Td>{d.user_score}</Td>
                 )}
-              </Td>
-              <Td
-                className="role"
-                onClick={() => onRoleClick(d.userId, d.isSuperTrainer)}
-                style={{ cursor: "Pointer !important" }}
-              >
-                <Link
-                  className="access_tran"
-                  title="click to switch"
-                  style={{ cursor: "Pointer !important" }}
-                  to="/"
-                >
-                  {loading?.find((c) => c === d.userId) ? (
-                    <img className="btn-gif" src={loader}></img>
-                  ) : d.isSuperTrainer ? (
-                    <img src={Role_Red}></img>
+                {/* <Td>{d.user_score}</Td> */}
+                <Td className="role">
+                  {d.isAbsent ? (
+                    <p>Absent</p>
+                  ) : d.score ? (
+                    <>
+                      <div
+                        className={classnames(
+                          "score",
+                          d.score,
+                          "d-inline-block"
+                        )}
+                      >
+                        <div className={d.score}>{d.score}</div>
+                      </div>
+                      <div className="action_score d-inline-block">
+                        <Link to={`/home?userId=${d.userId}&id=${index + 1}`}>
+                          <Edit3 color="#d06752" width={16} height={16}></Edit3>
+                        </Link>
+                      </div>
+                    </>
                   ) : (
-                    <img src={Role_Icon}></img>
+                    <>
+                      <Link
+                        className="acc_tran role"
+                        to={`/home?userId=${d.userId}&id=${`${
+                          index + 1
+                        }`.padStart(2, "0")}`}
+                      >
+                        {/* Assess Trainer */}
+                        {d.isIncomplete ? "Complete" : "Assess Trainer"}
+                        <br />
+                      </Link>
+                      <p>{d.isIncomplete ? "Incomplete" : ""}</p>
+                    </>
                   )}
-                  {}
-                </Link>
-              </Td>
-              {d?.comment ? (
-                <Td className="comment">{d?.comment} </Td>
-              ) : (
-                <Td>-</Td>
-              )}
-            </Tr>
-          );
-        })}
-      </Tbody>
-    </Table>
+                </Td>
+                <Td
+                  className="role"
+                  onClick={() => onRoleClick(d.userId, d.isSuperTrainer)}
+                  style={{ cursor: "Pointer !important" }}
+                >
+                  <Link
+                    className="access_tran"
+                    title="click to switch"
+                    style={{ cursor: "Pointer !important" }}
+                    to="/"
+                  >
+                    {loading?.find((c) => c === d.userId) ? (
+                      <img className="btn-gif" src={loader}></img>
+                    ) : d.isSuperTrainer ? (
+                      <img src={Role_Red}></img>
+                    ) : (
+                      <img src={Role_Icon}></img>
+                    )}
+                  </Link>
+                </Td>
+                {d?.comment ? (
+                  <Td className="comment">{d?.comment} </Td>
+                ) : (
+                  <Td>-</Td>
+                )}
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </>
   );
 };
 

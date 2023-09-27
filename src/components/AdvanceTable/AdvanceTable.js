@@ -39,7 +39,18 @@ const AdvanceTable = () => {
     console.log("allGrades", allGrades);
     return allGrades;
   };
-  // getGrades();
+
+  const getBatches = () => {
+    let allBatches = [];
+    reportData?.map((data) => {
+      if (data.batches && allBatches.indexOf(data.batches) === -1) {
+        allBatches.push(data.batches);
+      }
+    });
+    console.log("allBatches", allBatches);
+    return allBatches;
+  };
+  // getBatches();
   const handleChangePage = (event, newPage) => {
     // console.log("newPage", newPage);
     setPage(newPage);
@@ -64,6 +75,7 @@ const AdvanceTable = () => {
           let data = {};
           data.fullname = result[i].fullname;
           data.zone = result[i].zone;
+          data.batches = result[i].batches;
           data.division = result[i].division;
           data.programName = result[i].programName;
           data.user_score = result[i].user_score;
@@ -102,6 +114,7 @@ const AdvanceTable = () => {
   const [division, setDivision] = useState("All");
 
   const [score, setScore] = useState("All");
+  const [batches, setBatches] = useState("All");
 
   const _onZoneChange = (e) => {
     if (e.target.value === "All" && division === "All") {
@@ -151,6 +164,18 @@ const AdvanceTable = () => {
     setFilteredItems(filteredData);
   };
 
+  const _onBatchChange = (e) => {
+    const selectedGrade = e.target.value;
+    if (selectedGrade === "All") {
+      setFilteredItems(reportData);
+      return;
+    }
+    const filteredData = reportData.filter(
+      (item) => item.batches === selectedGrade
+    );
+    setFilteredItems(filteredData);
+  };
+
   return isloading ? (
     "Loading"
   ) : (
@@ -195,6 +220,26 @@ const AdvanceTable = () => {
               >
                 <option defaultValue={"All"}>All</option>$
                 {getDivisions().map((data, index) => (
+                  <option value={data} key={index}>
+                    {data}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="filter_section">
+            <div className="filter-text">Batches</div>
+            <div className="px-2">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setBatches(e.target.value);
+                  _onBatchChange(e);
+                }}
+              >
+                <option defaultValue={"All"}>All</option>$
+                {getBatches().map((data, index) => (
                   <option value={data} key={index}>
                     {data}
                   </option>
