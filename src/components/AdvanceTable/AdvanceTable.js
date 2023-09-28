@@ -39,6 +39,7 @@ const AdvanceTable = () => {
     console.log("allGrades", allGrades);
     return allGrades;
   };
+  // console.log("filteredItems", filteredItems);
 
   const getBatches = () => {
     let allBatches = [];

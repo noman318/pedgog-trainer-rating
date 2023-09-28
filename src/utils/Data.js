@@ -51,8 +51,8 @@ export const ReportDataTableColumn = [
       if (row.score) {
         return (
           <>
-            <div className={classnames("score", row.score)}>
-              <div className={row.score}>{row.score}</div>
+            <div className={classnames("user_score", row.user_score)}>
+              <div className={row.user_score}>{row.user_score}</div>
             </div>
             <div className="action_score">
               <Link to={`/home?userId=${row.userId}&id=${index + 1}`}>

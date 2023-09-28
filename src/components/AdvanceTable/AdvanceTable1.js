@@ -19,13 +19,13 @@ import TableRow from "./TableRow";
 import { Link } from "react-router-dom";
 
 const AdvanceTable1 = ({ data, callback }) => {
-  console.log("data", data);
+  // console.log("dataInAdvanceTable", data);
   const [loading, setLoading] = useState([""]);
-  const [tableData, setData] = useState(data);
+  const [tableData, setTableData] = useState(data);
   // console.log("tableData", tableData);
   const [selectedTrainers, setSelectedTrainers] = useState([]);
   const [sortedField, setSortedField] = React.useState(null);
-  const { items, requestSort, sortConfig } = useSortableData(tableData);
+  const { items, requestSort, sortConfig } = useSortableData(data);
   // console.log("items", items);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
@@ -56,8 +56,8 @@ const AdvanceTable1 = ({ data, callback }) => {
           data.isSuperTrainer = result[i].isSuperTrainer;
           modifiedResults.push(data);
         }
-        setData(modifiedResults);
-        setData(modifiedResults);
+        setTableData(modifiedResults);
+        setTableData(modifiedResults);
         let values = loading.filter((x) => x !== userId);
         setLoading(values);
 
@@ -84,66 +84,7 @@ const AdvanceTable1 = ({ data, callback }) => {
       get(userId);
     });
   };
-  function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
 
-  function getComparator(order, orderBy) {
-    return order === "desc"
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
-  }
-
-  function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) {
-        return order;
-      }
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-  }
-
-  // const headCells = [
-  //   {
-  //     id: "name",
-  //     numeric: false,
-  //     disablePadding: true,
-  //     label: "Dessert (100g serving)",
-  //   },
-  //   {
-  //     id: "calories",
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: "Calories",
-  //   },
-  //   {
-  //     id: "fat",
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: "Fat (g)",
-  //   },
-  //   {
-  //     id: "carbs",
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: "Carbs (g)",
-  //   },
-  //   {
-  //     id: "protein",
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: "Protein (g)",
-  //   },
-  // ];
   function jsonToCsv(jsonData, fileName) {
     if (!Array.isArray(jsonData)) {
       jsonData = [jsonData];
@@ -184,9 +125,16 @@ const AdvanceTable1 = ({ data, callback }) => {
     jsonToCsv(data, `Master trainer`);
   };
 
+  const handlePublish = () => {
+    console.log("Published");
+  };
+
   return (
     <>
       <div className="download_csv_btn">
+        <button onClick={handlePublish} disabled>
+          Publish Data
+        </button>
         <button onClick={handleExport}>Export to Excel</button>
       </div>
       <Table>
@@ -194,43 +142,54 @@ const AdvanceTable1 = ({ data, callback }) => {
           <Tr>
             <Th>S.No</Th>
             <Th
-            // onClick={() => requestSort("fullname")}
-            // className={getClassNamesFor("fullname")}
+              onClick={() => requestSort("fullname")}
+              className={getClassNamesFor("fullname")}
             >
               Trainer Name
             </Th>
             <Th
-            // onClick={() => requestSort("batches")}
-            // className={getClassNamesFor("batches")}
+              onClick={() => requestSort("batches")}
+              className={getClassNamesFor("batches")}
             >
               Batches
             </Th>
             <Th
-            // onClick={() => requestSort("zone")}
-            // className={getClassNamesFor("zone")}
+              onClick={() => requestSort("zone")}
+              className={getClassNamesFor("zone")}
             >
               Zone
             </Th>
             <Th
-            // onClick={() => requestSort("division")}
-            // className={getClassNamesFor("division")}
+              onClick={() => requestSort("division")}
+              className={getClassNamesFor("division")}
             >
               Divison
             </Th>
             <Th
-            // onClick={() => requestSort("programName")}
-            // className={getClassNamesFor("programName")}
+              onClick={() => requestSort("programName")}
+              className={getClassNamesFor("programName")}
             >
               Program Covered
             </Th>
-            <Th>Score</Th>
-            <Th className="role">Grade</Th>
+            <Th
+              onClick={() => requestSort("user_score")}
+              className={getClassNamesFor("user_score")}
+            >
+              Score
+            </Th>
+            <Th
+              // className="role"
+              onClick={() => requestSort("score")}
+              className={getClassNamesFor("score")}
+            >
+              Grade
+            </Th>
             <Th className="role">Role</Th>
             <Th>Comment</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {data?.map((d, index) => {
+          {items?.map((d, index) => {
             return (
               <Tr key={index}>
                 <Td className="no">{index + 1}</Td>

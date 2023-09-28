@@ -146,6 +146,7 @@
     /* Firefox */
     input[type="number"] {
       -moz-appearance: textfield;
+      appearance: textfield;
     }
 
     .audit_hdr_sec {
@@ -300,9 +301,10 @@
   }
 
   .score {
+    margin: auto;
     display: flex;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     background: #000;
     text-align: center;
     color: #000;
@@ -317,17 +319,30 @@
 
     &.A {
       background: #9bdb5a;
+      font-weight: 600;
+      font-size: larger;
+      border: 2px solid green;
     }
 
     &.B {
       background: #f1e473;
+      font-weight: 600;
+      font-size: larger;
+      border: 2px solid yellow;
     }
 
     &.C {
       background: #ea9400;
+      font-weight: 600;
+      font-size: larger;
+      border: 2px solid orange;
     }
     &.D {
       background: rgb(209, 59, 59);
+      color: whitesmoke;
+      font-weight: 600;
+      font-size: larger;
+      border: 2px solid maroon;
     }
   }
 
