@@ -19,9 +19,11 @@ import TableRow from "./TableRow";
 import { Link } from "react-router-dom";
 
 const AdvanceTable1 = ({ data, callback }) => {
-  // console.log("dataInAdvanceTable", data);
+  console.log("dataInAdvanceTable", data);
   const [loading, setLoading] = useState([""]);
   const [tableData, setTableData] = useState(data);
+  const [dataChanged, setDataChanged] = useState(false);
+
   // console.log("tableData", tableData);
   const [selectedTrainers, setSelectedTrainers] = useState([]);
   const [sortedField, setSortedField] = React.useState(null);
@@ -129,10 +131,14 @@ const AdvanceTable1 = ({ data, callback }) => {
     console.log("Published");
   };
 
+  useEffect(() => {
+    setDataChanged(true);
+  }, [data]);
+
   return (
     <>
       <div className="download_csv_btn">
-        <button onClick={handlePublish} disabled>
+        <button onClick={handlePublish} disabled={!dataChanged}>
           Publish Data
         </button>
         <button onClick={handleExport}>Export to Excel</button>
