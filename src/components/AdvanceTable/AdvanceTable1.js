@@ -129,6 +129,7 @@ const AdvanceTable1 = ({ data, callback }) => {
 
   const handlePublish = () => {
     console.log("Published");
+    setDataChanged(false);
   };
 
   useEffect(() => {

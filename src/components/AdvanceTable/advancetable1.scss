@@ -153,6 +153,11 @@
   width: 20%;
 }
 .download_csv_btn > button:first-child {
-  background-color: rgb(209, 65, 65);
+  background-color: rgb(214, 70, 70);
   color: whitesmoke;
+}
+.download_csv_btn > button:first-child:disabled {
+  background-color: rgb(116, 81, 81);
+  color: lightgray;
+  cursor: not-allowed;
 }
