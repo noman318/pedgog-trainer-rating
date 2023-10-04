@@ -92,7 +92,12 @@ const AuditTable = () => {
     console.log("isEditInSubmit", isEdit);
     saveAudit(
       userId,
-      { score: formik.values.rate, comment, isIncomplete: false },
+      {
+        score: formik.values.rate,
+        comment,
+        isIncomplete: false,
+        isAbsent: false,
+      },
       isEdit
     ).then(
       (result) => {
@@ -118,9 +123,15 @@ const AuditTable = () => {
     // console.log("formik.values?.rate", formik.values?.rate);
     // console.log("commentsInDraft", comment);
     setDraft((draftState) => !draftState);
+    console.log("isEditInDraft", isEdit);
     saveAudit(
       userId,
-      { score: formik.values.rate, comment, isIncomplete: true },
+      {
+        score: formik.values.rate,
+        comment,
+        isIncomplete: true,
+        isAbsent: false,
+      },
       isEdit
     ).then(
       (result) => {
@@ -155,6 +166,9 @@ const AuditTable = () => {
             formik.values.rate = result.audit.score;
             setIsEdit(true);
             setComment(result?.audit?.comment);
+          }
+          if (result?.audit?.isAbsent) {
+            setIsEdit(true);
           }
 
           setIsLoading(false);

@@ -26,7 +26,7 @@ const RouterComponent = () => {
       showInNavbar: true,
     },
     {
-      pageLink: "/Report",
+      pageLink: "/report",
       view: Report,
       displayName: "Report",
       showInNavbar: true,
@@ -57,9 +57,9 @@ const RouterComponent = () => {
         <Header></Header>
         <Switch>
           <Redirect exact from="/login" to="/" />
-          <Redirect exact from="/" to="/Report" />
+          <Redirect exact from="/" to="/report" />
           <Route path="/Home" component={Home} />
-          <Route path="/Report" component={Report} />
+          <Route path="/report" component={Report} />
         </Switch>
       </>
     );

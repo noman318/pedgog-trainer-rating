@@ -45,10 +45,10 @@ const AdvanceTable1 = ({ data, callback }) => {
         for (let i = 0; i < result.length; i++) {
           let data = {};
           data.fullname = result[i].fullname;
-          data.zone = result[i].zone;
+          // data.zone = result[i].zone;
           data.batches = result[i].batches;
           data.division = result[i].division;
-          data.programName = result[i].programName;
+          // data.programName = result[i].programName;
           data.user_score = result[i].user_score;
           data.isAbsent = result[i].isAbsent;
           data.isIncomplete = result[i].isIncomplete;
@@ -160,24 +160,24 @@ const AdvanceTable1 = ({ data, callback }) => {
             >
               Batches
             </Th>
-            <Th
+            {/* <Th
               onClick={() => requestSort("zone")}
               className={getClassNamesFor("zone")}
             >
               Zone
-            </Th>
+            </Th> */}
             <Th
               onClick={() => requestSort("division")}
               className={getClassNamesFor("division")}
             >
               Divison
             </Th>
-            <Th
+            {/* <Th
               onClick={() => requestSort("programName")}
               className={getClassNamesFor("programName")}
             >
               Program Covered
-            </Th>
+            </Th> */}
             <Th
               onClick={() => requestSort("user_score")}
               className={getClassNamesFor("user_score")}
@@ -202,9 +202,9 @@ const AdvanceTable1 = ({ data, callback }) => {
                 <Td className="no">{index + 1}</Td>
                 <Td className="name">{d.fullname}</Td>
                 {d.batches ? <Td className="name">{d.batches}</Td> : <Td>-</Td>}
-                {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>}
+                {/* {d.zone ? <Td>{d.zone}</Td> : <Td>-</Td>} */}
                 {d.division ? <Td>{d.division}</Td> : <Td>-</Td>}
-                <Td>{d.programName}</Td>
+                {/* <Td>{d.programName}</Td> */}
                 {d.isAbsent ? (
                   <Td>
                     <p>Absent</p>
@@ -215,7 +215,14 @@ const AdvanceTable1 = ({ data, callback }) => {
                 {/* <Td>{d.user_score}</Td> */}
                 <Td className="role">
                   {d.isAbsent ? (
-                    <p>Absent</p>
+                    <div style={{ display: "flex" }}>
+                      <p>Absent</p>
+                      <div className="action_score d-inline-block">
+                        <Link to={`/home?userId=${d.userId}&id=${index + 1}`}>
+                          <Edit3 color="#d06752" width={16} height={16}></Edit3>
+                        </Link>
+                      </div>
+                    </div>
                   ) : d.score ? (
                     <>
                       <div
@@ -245,7 +252,7 @@ const AdvanceTable1 = ({ data, callback }) => {
                         {d.isIncomplete ? "Complete" : "Assess Trainer"}
                         <br />
                       </Link>
-                      <p>{d.isIncomplete ? "Incomplete" : ""}</p>
+                      <p>{d.isIncomplete ? "Draft Saved" : ""}</p>
                     </>
                   )}
                 </Td>

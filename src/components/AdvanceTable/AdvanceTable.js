@@ -187,7 +187,7 @@ const AdvanceTable = () => {
 
       <div className="table_cnt">
         <div className="table_fltrs">
-          <div className="filter_section">
+          {/* <div className="filter_section">
             <div className="filter-text">Zone</div>
             <div className="px-2">
               <select
@@ -206,7 +206,7 @@ const AdvanceTable = () => {
                 ))}
               </select>
             </div>
-          </div>
+          </div> */}
 
           <div className="filter_section">
             <div className="filter-text">Division</div>
