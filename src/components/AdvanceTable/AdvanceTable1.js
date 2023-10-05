@@ -152,7 +152,7 @@ const AdvanceTable1 = ({ data, callback }) => {
               onClick={() => requestSort("fullname")}
               className={getClassNamesFor("fullname")}
             >
-              Trainer Name
+              Master Trainer Name
             </Th>
             <Th
               onClick={() => requestSort("batches")}

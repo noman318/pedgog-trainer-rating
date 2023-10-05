@@ -18,7 +18,7 @@ export const ReportDataTableColumn = [
     style: { color: "#878787" },
   },
   {
-    name: "Trainer Name",
+    name: "Master Trainer Name",
     selector: (row) => row.fullname,
     sortable: true,
     width: "20%",
