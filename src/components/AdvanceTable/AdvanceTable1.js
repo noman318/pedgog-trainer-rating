@@ -35,7 +35,7 @@ const AdvanceTable1 = ({ data, callback }) => {
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
-
+  // console.log("data", data);
   const get = (userId) => {
     fetchUsers().then(
       (response) => {
@@ -67,6 +67,7 @@ const AdvanceTable1 = ({ data, callback }) => {
         // setIsLoading(false);
       },
       (error) => {
+        console.log("error", error);
         // setIsLoading(false);
       }
     );
@@ -86,7 +87,47 @@ const AdvanceTable1 = ({ data, callback }) => {
       get(userId);
     });
   };
+  console.log("dataAboveJsontoCSVfunc", data);
 
+  function rearrangedData() {
+    return data?.map((item) => ({
+      "Full name": item.fullname,
+      Batches: item.batches,
+      Division: item.division,
+      isincomplete: item.isIncomplete,
+      "User Score": item.user_score,
+      Grade: item.score,
+      Comments: item.comment,
+      IsSupertrainer: item.isSuperTrainer,
+    }));
+  }
+
+  const newArrangedData = rearrangedData(data);
+  console.log("newArrangedData", newArrangedData);
+
+  // const filteredData = data.map((item) => {
+  //   const {
+  //     fullname,
+  //     batches,
+  //     division,
+  //     isIncomplete,
+  //     score,
+  //     user_score,
+  //     comment,
+  //     isSuperTrainer,
+  //   } = item;
+  //   return {
+  //     fullname,
+  //     batches,
+  //     comment,
+  //     division,
+  //     isIncomplete,
+  //     isSuperTrainer,
+  //     score,
+  //     user_score,
+  //   };
+  // });
+  // console.log("datafilteredDataAboveJsonFunc", filteredData);
   function jsonToCsv(jsonData, fileName) {
     if (!Array.isArray(jsonData)) {
       jsonData = [jsonData];
@@ -124,7 +165,7 @@ const AdvanceTable1 = ({ data, callback }) => {
 
   // Trigger the conversion and download
   const handleExport = () => {
-    jsonToCsv(data, `Master trainer`);
+    jsonToCsv(newArrangedData, `Master trainer`);
   };
 
   const handlePublish = () => {
@@ -182,7 +223,7 @@ const AdvanceTable1 = ({ data, callback }) => {
               onClick={() => requestSort("user_score")}
               className={getClassNamesFor("user_score")}
             >
-              Score
+              Assesment Score
             </Th>
             <Th
               // className="role"
