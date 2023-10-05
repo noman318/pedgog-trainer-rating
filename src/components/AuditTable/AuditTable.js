@@ -68,6 +68,7 @@ const AuditTable = () => {
       isEdit
     ).then(
       (result) => {
+        // console.log("result", result);
         if (!result.code) {
           setSuccess(true);
           setUser(result.data);

@@ -301,10 +301,10 @@
   }
 
   .score {
-    margin: auto;
+    // margin: auto;
     display: flex;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background: #000;
     text-align: center;
     color: #000;
@@ -321,28 +321,28 @@
       background: #9bdb5a;
       font-weight: 600;
       font-size: larger;
-      border: 2px solid green;
+      border: 1px solid green;
     }
 
     &.B {
       background: #f1e473;
       font-weight: 600;
       font-size: larger;
-      border: 2px solid yellow;
+      border: 1px solid yellow;
     }
 
     &.C {
       background: #ea9400;
       font-weight: 600;
       font-size: larger;
-      border: 2px solid orange;
+      border: 1px solid orange;
     }
     &.D {
       background: rgb(209, 59, 59);
       color: whitesmoke;
       font-weight: 600;
       font-size: larger;
-      border: 2px solid maroon;
+      border: 1px solid maroon;
     }
   }
 
@@ -372,4 +372,8 @@
       }
     }
   }
+}
+.table_data {
+  font-size: larger;
+  font-weight: 300;
 }

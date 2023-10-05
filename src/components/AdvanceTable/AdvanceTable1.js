@@ -19,7 +19,7 @@ import TableRow from "./TableRow";
 import { Link } from "react-router-dom";
 
 const AdvanceTable1 = ({ data, callback }) => {
-  console.log("dataInAdvanceTable", data);
+  // console.log("dataInAdvanceTable", data);
   const [loading, setLoading] = useState([""]);
   const [tableData, setTableData] = useState(data);
   const [dataChanged, setDataChanged] = useState(false);
@@ -72,7 +72,7 @@ const AdvanceTable1 = ({ data, callback }) => {
       }
     );
   };
-  console.log("(data[0])", data[0]);
+  // console.log("(data[0])", data[0]);
   useEffect(() => {
     let values = getItem("trainersWithRole");
     if (values) {
@@ -87,7 +87,7 @@ const AdvanceTable1 = ({ data, callback }) => {
       get(userId);
     });
   };
-  console.log("dataAboveJsontoCSVfunc", data);
+  // console.log("dataAboveJsontoCSVfunc", data);
 
   function rearrangedData() {
     return data?.map((item) => ({
@@ -103,7 +103,7 @@ const AdvanceTable1 = ({ data, callback }) => {
   }
 
   const newArrangedData = rearrangedData(data);
-  console.log("newArrangedData", newArrangedData);
+  // console.log("newArrangedData", newArrangedData);
 
   // const filteredData = data.map((item) => {
   //   const {
@@ -169,7 +169,7 @@ const AdvanceTable1 = ({ data, callback }) => {
   };
 
   const handlePublish = () => {
-    console.log("Published");
+    // console.log("Published");
     setDataChanged(false);
   };
 
