@@ -15,6 +15,8 @@ import {
   UPDATE_AUDIT,
   AUDUIT_USER,
   SET_PERSONAL_TRAINER,
+  USER_DIVISION,
+  USER_BATCHES,
 } from "../contants/urls";
 
 const buildUrlParams = (url, params) => {
@@ -68,3 +70,6 @@ export const setPersonalTrainer = (userId, payload) => {
     { params: payload }
   );
 };
+
+export const getAllDivisions = () => axios.get(`${USER_DIVISION}`);
+export const getAllBatches = () => axios.get(`${USER_BATCHES}`);

@@ -7,18 +7,33 @@ import DataTable from "react-data-table-component";
 import { ReportDataTableColumn } from "../../utils/Data";
 import { useEffect, useState } from "react";
 import AdvanceTable1 from "./AdvanceTable1";
-import { fetchUsers } from "../../services/auth";
+import {
+  fetchUsers,
+  getAllBatches,
+  getAllDivisions,
+} from "../../services/auth";
 import { TablePagination } from "@material-ui/core";
 
 const AdvanceTable = () => {
   const [reportData, setReportData] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const [divisionsData, setDivisionsData] = useState([]);
 
   const [filteredItems, setFilteredItems] = useState(reportData);
   const [zone, setZone] = useState("All");
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(30);
   const [pageCount, setPageCount] = useState(1);
+
+  useEffect(() => {
+    const getAllDivisionData = async () => {
+      const data = await getAllDivisions();
+      console.log("dataFromResponse", data);
+      setDivisionsData(data?.data);
+    };
+    getAllDivisionData();
+  }, []);
+  // console.log("divisionsData", divisionsData);
   const getZones = () => {
     let uniqueZones = [];
     reportData?.map((data) => {
@@ -220,11 +235,12 @@ const AdvanceTable = () => {
                 }}
               >
                 <option defaultValue={"All"}>All</option>$
-                {getDivisions().map((data, index) => (
-                  <option value={data} key={index}>
-                    {data}
-                  </option>
-                ))}
+                {divisionsData &&
+                  divisionsData?.map((data, index) => (
+                    <option value={data} key={index}>
+                      {data}
+                    </option>
+                  ))}
               </select>
             </div>
           </div>

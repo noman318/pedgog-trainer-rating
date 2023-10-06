@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars, array-callback-return */
 import Config from "../config";
 
-// export const BASE_URL = "http://localhost:4000/v1";
-export const BASE_URL = "https://api.pedgog.in/v1";
+export const BASE_URL = "http://localhost:4000/v1";
+// export const BASE_URL = "https://api.pedgog.in/v1";
 // export let BASE_URL = Config.API_URL;
 
 export const REGISTER_URL = `${BASE_URL}/auth/register`;
@@ -31,4 +31,6 @@ export const LICI_REPORT_URL = `${ANALYTICS_URL}field_Staff_quality/li_ci_report
 export const PATCH_USER_FIRSTTIME_URL = `${BASE_URL}/users`;
 export const UPDATE_AUDIT = `${BASE_URL}/audit`;
 export const AUDUIT_USER = `${BASE_URL}/audit/users`;
+export const USER_DIVISION = `${BASE_URL}/audit/users/division`;
+export const USER_BATCHES = `${BASE_URL}/audit/users/batches`;
 export const SET_PERSONAL_TRAINER = `${BASE_URL}/audit`;
