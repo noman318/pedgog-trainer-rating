@@ -8,6 +8,7 @@ import { ReportDataTableColumn } from "../../utils/Data";
 import { useEffect, useState } from "react";
 import AdvanceTable1 from "./AdvanceTable1";
 import {
+  fetchAllUsersAtOnce,
   fetchUsers,
   getAllBatches,
   getAllDivisions,
@@ -31,9 +32,20 @@ const AdvanceTable = () => {
       console.log("dataFromResponse", data);
       setDivisionsData(data?.data);
     };
+
+    const allUsersData = async () => {
+      const result = await fetchAllUsersAtOnce();
+      console.log("resultIsComingItslong", result);
+    };
     getAllDivisionData();
+    // allUsersData();
   }, []);
   // console.log("divisionsData", divisionsData);
+  let divisionsDataUpdated = divisionsData.filter(
+    (data) => data !== "" && data !== "Please Select"
+  );
+  // console.log("divisionsDataUpdated", divisionsDataUpdated);
+
   const getZones = () => {
     let uniqueZones = [];
     reportData?.map((data) => {
@@ -234,9 +246,10 @@ const AdvanceTable = () => {
                   _onDivisionChange(e);
                 }}
               >
+                {/* {console.log("divisionAfterSelect", division)} */}
                 <option defaultValue={"All"}>All</option>$
-                {divisionsData &&
-                  divisionsData?.map((data, index) => (
+                {divisionsDataUpdated &&
+                  divisionsDataUpdated?.map((data, index) => (
                     <option value={data} key={index}>
                       {data}
                     </option>

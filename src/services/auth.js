@@ -62,6 +62,9 @@ export const saveAudit = (userId, payload, isEdit) => {
 
 export const fetchUsers = (pageNumber, pageSize) =>
   axios.get(`${AUDUIT_USER}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+
+export const fetchAllUsersAtOnce = () =>
+  axios.get(`${AUDUIT_USER}?pageNumber=0&pageSize=0`);
 export const fetchAuditByUserId = (userId) =>
   axios.get(`${UPDATE_AUDIT}/${userId}`);
 export const setPersonalTrainer = (userId, payload) => {
